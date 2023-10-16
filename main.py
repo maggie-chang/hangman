@@ -1,7 +1,7 @@
 import pgzrun
 import random
 
-MAX_WRONG_GUESSES = 10
+max_wrong_guesses = 10
 
 
 WIDTH = 500
@@ -27,28 +27,33 @@ def is_only_letters(word):
     return True
 
 def word_place(spooky_word):
-    if 
+    spooky_word = get_random_spooky_word
+    if len(spooky_word) != 
+
     
     
 
 
 
-print("Welcome to Hangman!")
+print("this is hanging!")
 
 
 while True:
 
-    spooky_word = get_random_spooky_word()
-    print(f"spooky word is {spooky_word}")
-    break
 
-    #guesses_taken = 0
-    #while guesses_taken < MAX_WRONG_GUESSES: 
-        #guess = ""
-        #while len(guess) != len(str(spooky_word)) or not is_only_letters:
-            #print(f"Guess #{guesses_taken}: ")
-            #guess = input()
-        #guesses_taken += 1
+    spooky_word = get_random_spooky_word(num_letters)
+    print(f"spooky word is {spooky_word}")
+
+    num_letters = len(spooky_word)
+
+    while len(spooky_word) != int(num_letters):
+        new_spooky_word = get_random_spooky_word()
+        print(f"new spooky word is {spooky_word}")
+        break
+
+    wrong_guesses_taken = 0
+    while wrong_guesses_taken < max_wrong_guesses:
+        guess = ""
 
 
 
