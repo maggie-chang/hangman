@@ -28,13 +28,16 @@ def is_only_letters(word):
          return False
     return True
 
-#def word_place_clues(spooky_word, word_guess, guessed_letter):
-    #spooky_word = get_random_spooky_word
+def word_place_clues(spooky_word, guessed_word, guessed_letter):
+    spooky_word = get_random_spooky_word
+    if guessed_word == spooky_word
+        return print("you won!")
 
-    #word_placement = []
-        #for letter in guessed_letter:
-            #if guessed_letter[] == spooky_word
-                #return 
+    word_placement = []
+        for letter in guessed_letter:
+            if guessed_letter[] == len(spooky_word)[]
+                return len(spooky_word)[]
+            elif
 
     
     
