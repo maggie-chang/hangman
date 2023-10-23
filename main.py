@@ -36,7 +36,7 @@ def correct_word(spooky_word, guessed_word):
         return print("you won!")
 
 
-def clues_from_letter(spooky_word: str, guessed_letter):
+def clues_from_letter(spooky_word:str, guessed_letter):
     clue = ""
     guess_index = spooky_word.index(guessed_letter)
 
@@ -48,8 +48,6 @@ def clues_from_letter(spooky_word: str, guessed_letter):
 
     return clue
 
-print(clues_from_letter("halloween", "l"))
-
 
 
 
@@ -60,18 +58,35 @@ while True:
     num_letters = len(spooky_word)
     print(f"spooky word is {spooky_word}")
 
+
     wrong_guesses_taken = 0
     while wrong_guesses_taken < max_wrong_guesses:
         guess = ""
-        while len(guess) != int(max_wrong_guesses) or not is_only_letters:
-            guess = input()
+        print(clues_from_letter(guess, spooky_word))
 
-
-
-    print(clues_from_letter(guess, spooky_word))
-    if correct_word == guess:
-        break
-    if guess >= max_wrong_guesses:
-        print("you killed the man...")
+        while guess != int(max_wrong_guesses) or not is_only_letters:
+            print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
+            guess = input("enter a letter: ")
+        
+        #if the letter the player inputs is not in the word, returns *
+        print(clues_from_letter(guess, spooky_word))
+        max_wrong_guesses += 1
+        
+        if correct_word == guess:
+            break
+        if guess >= max_wrong_guesses:
+            print(f"you lost the answer was {spooky_word}")
 
 pgzrun.go()
+
+
+
+
+
+#missing:
+# 1) giving player *s (shows len of spooky_word) at start of game
+# 2) using player's input then returns whether if its correct; 
+#   if correct, returns player's letter input and gives player right position. 
+#   if wrong, wrong_guesses_taken += 1, and returns the same string of *s (and letters) as before
+# 4) play again option
+# 5) 
