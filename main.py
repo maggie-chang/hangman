@@ -1,4 +1,4 @@
-import pgzrun
+     import pgzrun
 import random
 
 max_wrong_guesses = 10
@@ -36,7 +36,7 @@ def correct_word(spooky_word, guessed_word):
         return print("you won!")
 
 
-def clues_from_letter(spooky_word:str, guessed_letter):
+def clues_from_letter(spooky_word: str, guessed_letter):
     clue = ""
     guess_index = spooky_word.index(guessed_letter)
 
@@ -48,10 +48,13 @@ def clues_from_letter(spooky_word:str, guessed_letter):
 
     return clue
 
+def hangman(man1, man2, man3, man4, man5, man6, hang7, hang8, hang9, hang10, spooky_word, ):
 
 
 
-print("this is hangman")
+
+
+print("This is HANGMAN. A simple game where you can guess the letter")
 
 while True:
     spooky_word = get_random_spooky_word()
@@ -85,8 +88,8 @@ pgzrun.go()
 
 #missing:
 # 1) giving player *s (shows len of spooky_word) at start of game
-# 2) using player's input then returns whether if its correct; 
+# 2) using player's input then returns whether if its correct or incorrect  ; 
 #   if correct, returns player's letter input and gives player right position. 
-#   if wrong, wrong_guesses_taken += 1, and returns the same string of *s (and letters) as before
+#   if wrong, wrong_guesses_taken += 1, and returns the same string of *s   (and letters) as before
 # 4) play again option
 # 5) 
