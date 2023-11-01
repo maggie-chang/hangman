@@ -106,7 +106,7 @@ the answer was {spooky_word}''')
         wrong_guesses_taken += 1
         
         if wrong_guesses_taken > max_wrong_guesses:
-            print(f"you lost the answer was {spooky_word}")
+            print(f"you lost the answer is {spooky_word}")
 
 pgzrun.go()
 
