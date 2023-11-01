@@ -98,11 +98,11 @@ pgzrun.go()
 
 
 
-#missing:
-# 1) giving player *s (shows len of spooky_word) at start of game
-# 2) using player's input then returns whether if its correct or incorrect  ; 
-#   - if correct, returns player's letter input and gives player right position. 
-#   - if wrong, wrong_guesses_taken += 1, and returns the same string of *s   (and letters) as before
+#*important* missing:
+# 1) giving player “*”s (shows len of spooky_word) at start of game
+# 2) using player's input then returning whether if the guess is correct or incorrect
+#   - if correct, returns the player's letter input and gives the player the right position.
+#   - if wrong, wrong_guesses_taken += 1, and returns the same string of *s (and letters) as before & look at #4
 # 4) assign each hangman image each of the wrong_guesses_taken += 1
 #   - e.g. when wrong_guesses taken = 0, it will print the first image of the hangman, which is just the hanger because no wrong guesses has been taken
 # 5) play again option + give up option
