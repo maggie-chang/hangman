@@ -72,7 +72,7 @@ while True:
 
 
     wrong_guesses_taken = 0
-    while wrong_guesses_taken < max_wrong_guesses:
+    while wrong_guesses_taken <= max_wrong_guesses:
         guess = ""
         #print(clues_from_letter(guess, spooky_word))
 
@@ -83,17 +83,29 @@ while True:
         if guess in spooky_word:
             pass
         
-        #if the letter the player inputs is not in the word, returns *
-        if guess == correct_word:
-            break
-        elif wrong_guesses_taken >= max_wrong_guesses:
-            print(f'''you lost the answer was {spooky_word}
-''')
-            break
+        while wrong_guesses_taken == max_wrong_guesses:
+            word_guess = input("This is your last attempt please make a *word* guess: ")
+
+            #if the letter the player inputs is not in the word, returns *
+            if word_guess == correct_word:
+                break
+            elif wrong_guesses_taken > max_wrong_guesses:
+                print(f'''you lost...
+________
+| /     |
+|            
+|
+|
+|
+|
+|              
+|____+{(0_0)}
+the answer was {spooky_word}''')
+                break
 
         wrong_guesses_taken += 1
         
-        if wrong_guesses_taken >= max_wrong_guesses:
+        if wrong_guesses_taken > max_wrong_guesses:
             print(f"you lost the answer was {spooky_word}")
 
 pgzrun.go()
