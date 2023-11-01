@@ -43,7 +43,7 @@ ________
 |        | 
 |        |
 |____+  / \
-you won!''')
+you saved the man!''')
 
 
 def clues_from_letter(spooky_word: str, guessed_letter):
@@ -76,20 +76,24 @@ while True:
         guess = ""
         #print(clues_from_letter(guess, spooky_word))
 
-        while guess != int(max_wrong_guesses) or not is_only_letters:
+        while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(guess):
             print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
             guess = input("enter a letter: ")
+
+        if guess in spooky_word:
+            pass
         
         #if the letter the player inputs is not in the word, returns *
         if guess == correct_word:
             break
-        elif guess >= max_wrong_guesses:
-            print(f"you lost the answer was {spooky_word}")
+        elif wrong_guesses_taken >= max_wrong_guesses:
+            print(f'''you lost the answer was {spooky_word}
+''')
             break
 
-        max_wrong_guesses += 1
+        wrong_guesses_taken += 1
         
-        if guess >= max_wrong_guesses:
+        if wrong_guesses_taken >= max_wrong_guesses:
             print(f"you lost the answer was {spooky_word}")
 
 pgzrun.go()
