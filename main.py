@@ -33,6 +33,7 @@ def get_random_spooky_word():
         return random.choice(list(file))[:-1]
 
 
+
 def is_only_letters(word):
     """makes sure players' input is only letters"""
     for letter in word:
@@ -41,6 +42,7 @@ def is_only_letters(word):
             not in "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"):
             return False
     return True
+
 
 
 def correct_word(spooky_word, guessed_word):
@@ -60,6 +62,7 @@ ________
 you saved the man!""")
 
 
+
 def clues_from_letter(spooky_word: str, guessed_letter):
     clue = ""
     guess_index = spooky_word.index(guessed_letter)
@@ -71,6 +74,7 @@ def clues_from_letter(spooky_word: str, guessed_letter):
             clue += "*"
 
     return clue
+
 
 
 def string_to_array(str):
@@ -88,6 +92,19 @@ def play():
         print(f"spooky word is {spooky_word}")
 
         wrong_guesses_taken = 0
+        if wrong_guesses_taken == 0:
+                print("""
+
+________
+| /     |
+|
+|
+|
+|
+|
+|
+|____+
+""")
         while wrong_guesses_taken <= max_wrong_guesses:
             guess = ""
             # print(clues_from_letter(guess, spooky_word))
@@ -101,7 +118,109 @@ def play():
                 pass
 
             if wrong_guesses_taken == 1:
-                print("""""")
+                print("""
+________
+| /     |
+|     (:D)
+|
+|
+|
+|
+|
+|____+
+""")        if wrong_guesses_taken == 2:
+                print("""
+________
+| /     |
+|     (:D)
+|       |
+|       |
+|       |
+|
+|
+|____+
+""")        if wrong_guesses_taken == 3:
+                print("""
+________
+| /     |
+|     (:D)
+|     \ | 
+|       |
+|       |
+|
+|
+|____+
+
+""")        if wrong_guesses_taken == 4:
+                print("""
+________
+| /     |
+|      (:/)
+|        | 
+|      / | \
+|        |
+|
+|
+|____+
+
+""")        if wrong_guesses_taken == 5:
+                print("""
+________
+| /     |
+|     (._.)
+|       | 
+|     / | \
+|       |
+|      / 
+|
+|____+
+
+""")        if wrong_guesses_taken == 6:
+                print("""
+________
+| /     |
+|     (-_-)
+|       | 
+|     / | \
+|       |
+|      / \
+|
+|____+
+""")        if wrong_guesses_taken == 7:
+                print("""
+________
+| /     |
+|     (x_x)
+|
+|       | 
+|     / | \
+|       |
+|      / \
+|____+  
+
+""")        if wrong_guesses_taken == 8:
+                print("""
+________
+| /     |
+|     (x_x)
+|
+|
+|
+|
+|              
+|____+{___}
+""")        if wrong_guesses_taken == 9:
+                print("""
+________
+| /     |
+|            
+|
+|     (x_x)
+|
+|
+|              
+|____+{___}
+""")
 
             while wrong_guesses_taken == max_wrong_guesses:
                 word_guess = input(
