@@ -21,8 +21,7 @@ def introduction():
 Instructions and Info:
     -  All words are anything related to the fall season
     - There will be asterisks '*' indicating the # of letters in the word
-    - For each incorrect letter guessed, a body part will be added
-                    """)
+    - For each incorrect letter guessed, a body part will be added""")
     return True
     
 
@@ -76,6 +75,7 @@ def clues_from_letter(spooky_word: str, guessed_letter):
 
 
 def string_to_array(str):
+    """edit this so it takes the guess and returns a new string but with the correctly guessed letter"""
     result = []
     for char in str:
         result.append("*")
@@ -83,7 +83,7 @@ def string_to_array(str):
 
 
 
-def play():
+def play_hangman():
 
     while True:
         spooky_word = get_random_spooky_word()
@@ -92,7 +92,6 @@ def play():
         wrong_guesses_taken = 0
         if wrong_guesses_taken == 0:
                 print("""
-
 ________
 | /     |
 |
@@ -105,12 +104,12 @@ ________
 """)
         while wrong_guesses_taken <= max_wrong_guesses:
             guess = ""
-            # print(clues_from_letter(guess, spooky_word))
+            #print(clues_from_letter(guess, spooky_word))
             print(string_to_array(spooky_word))
 
             while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(guess):
                 print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
-                guess = input("enter a letter: ")
+                guess.lower() = input("enter a letter: ")
 
             if guess in spooky_word:
                 pass
@@ -235,8 +234,7 @@ ________
 #####################################################################
 
             while wrong_guesses_taken == max_wrong_guesses:
-                word_guess = input(
-                    "This is your last attempt. Make a *word* guess: ")
+                word_guess = input("This is your last attempt. Make a *word* guess: ")
 
                 # if the letter the player inputs is not in the word, returns *
                 if word_guess == correct_word:
@@ -261,7 +259,7 @@ ________
 # MAIN PROGRAM
 #############################################################################################
 introduction()
-play()
+play_hangman()
 #spooky_word = get_random_spooky_word()
 #print(string_to_array(spooky_word))
 # pgzrun.go()
