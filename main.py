@@ -37,9 +37,7 @@ def get_random_spooky_word():
 def is_only_letters(word):
     """makes sure players' input is only letters"""
     for letter in word:
-        if (
-            letter
-            not in "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"):
+        if (letter not in "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"):
             return False
     return True
 
@@ -117,6 +115,11 @@ ________
             if guess in spooky_word:
                 pass
 
+            if guess not in spooky_word:
+                wrong_guesses_taken += 1
+
+
+##########################################
             if wrong_guesses_taken == 1:
                 print("""
 ________
@@ -128,7 +131,8 @@ ________
 |
 |
 |____+
-""")        if wrong_guesses_taken == 2:
+""")        
+            if wrong_guesses_taken == 2:
                 print("""
 ________
 | /     |
@@ -139,7 +143,8 @@ ________
 |
 |
 |____+
-""")        if wrong_guesses_taken == 3:
+""")                           
+            if wrong_guesses_taken == 3:
                 print("""
 ________
 | /     |
@@ -151,7 +156,8 @@ ________
 |
 |____+
 
-""")        if wrong_guesses_taken == 4:
+""")              
+            if wrong_guesses_taken == 4:
                 print("""
 ________
 | /     |
@@ -163,7 +169,8 @@ ________
 |
 |____+
 
-""")        if wrong_guesses_taken == 5:
+""")        
+            if wrong_guesses_taken == 5:
                 print("""
 ________
 | /     |
@@ -175,7 +182,8 @@ ________
 |
 |____+
 
-""")        if wrong_guesses_taken == 6:
+""")        
+            if wrong_guesses_taken == 6:
                 print("""
 ________
 | /     |
@@ -186,7 +194,8 @@ ________
 |      / \
 |
 |____+
-""")        if wrong_guesses_taken == 7:
+""")        
+            if wrong_guesses_taken == 7:
                 print("""
 ________
 | /     |
@@ -198,7 +207,8 @@ ________
 |      / \
 |____+  
 
-""")        if wrong_guesses_taken == 8:
+""")        
+            if wrong_guesses_taken == 8:
                 print("""
 ________
 | /     |
@@ -209,7 +219,8 @@ ________
 |
 |              
 |____+{___}
-""")        if wrong_guesses_taken == 9:
+""")        
+            if wrong_guesses_taken == 9:
                 print("""
 ________
 | /     |
@@ -221,6 +232,7 @@ ________
 |              
 |____+{___}
 """)
+#####################################################################
 
             while wrong_guesses_taken == max_wrong_guesses:
                 word_guess = input(
@@ -243,10 +255,6 @@ ________
     the answer was {spooky_word}""")
                     break
 
-            wrong_guesses_taken += 1
-
-            if wrong_guesses_taken > max_wrong_guesses:
-                print(f"you lost the answer is {spooky_word}")
 
 
 #############################################################################################
