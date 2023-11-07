@@ -21,7 +21,8 @@ def introduction():
 Instructions and Info:
     -  All words are anything related to the fall season
     - There will be asterisks '*' indicating the # of letters in the word
-    - For each incorrect letter guessed, a body part will be added""")
+    - For each incorrect letter guessed, a body part will be added
+          """)
     return True
     
 
@@ -57,6 +58,149 @@ ________
 |        |
 |____+  / \
 you saved the man!""")
+    
+
+    
+def print_the_man(num_guesses):
+
+    if num_guesses == 0:
+        print("""
+________
+| /     |
+|
+|
+|
+|
+|
+|
+|____+
+""")
+                
+    if num_guesses == 1:
+        print("""
+________
+| /     |
+|     (:D)
+|
+|
+|
+|
+|
+|____+
+""")        
+    if num_guesses  == 2:
+        print("""
+________
+| /     |
+|     (:D)
+|       |
+|       |
+|       |
+|
+|
+|____+
+""")                           
+    if num_guesses == 3:
+        print("""
+________
+| /     |
+|     (:D)
+|     \ | 
+|       |
+|       |
+|
+|
+|____+
+
+""")              
+    if num_guesses == 4:
+        print("""
+________
+| /     |
+|      (:/)
+|        | 
+|      / | \
+|        |
+|
+|
+|____+
+
+""")        
+    if num_guesses == 5:
+        print("""
+________
+| /     |
+|     (._.)
+|       | 
+|     / | \
+|       |
+|      / 
+|
+|____+
+
+""")        
+    if num_guesses == 6:
+        print("""
+________
+| /     |
+|     (-_-)
+|       | 
+|     / | \
+|       |
+|      / \
+|
+|____+
+""")        
+    if num_guesses == 7:
+        print("""
+________
+| /     |
+|     (x_x)
+|
+|       | 
+|     / | \
+|       |
+|      / \
+|____+  
+
+""")        
+    if num_guesses == 8:
+        print("""
+________
+| /     |
+|     (x_x)
+|
+|
+|
+|
+|              
+|____+{___}
+""")        
+    if num_guesses == 9:
+        print("""
+________
+| /     |
+|            
+|
+|     (x_x)
+|
+|
+|              
+|____+{___}
+""")
+
+    if num_guesses == 10:
+        print("""
+________
+| /     |
+|            
+|
+|     
+|
+|
+|              
+|____+{(0_0)}
+""")
 
 
 
@@ -74,12 +218,42 @@ def clues_from_letter(spooky_word: str, guessed_letter):
 
 
 
-def string_to_array(str):
+def initial_clue(str):
     """edit this so it takes the guess and returns a new string but with the correctly guessed letter"""
     result = []
-    for char in str:
+    for _ in str:
         result.append("*")
     return result
+
+
+
+def get_word_from_player():
+    guessed_word = input("enter a word: ")
+    
+    while not is_only_letters(guessed_word):
+        print("please use only letters")
+        guessed_word = input("enter a word: ")
+
+    guessed_word = guessed_word.lower()
+    return guessed_word
+
+
+
+def get_letter_from_player():
+    guessed_letter = input("enter a letter: ")
+    
+    while (not is_only_letters(guessed_letter)) and len(guessed_letter) == 1:
+        print("please enter a single letter")
+        guessed_letter = input("enter a letter: ")
+
+    guessed_letter = guessed_letter.lower()
+    return guessed_letter
+
+
+
+def index_of_letter_in_word(letter, word):
+    word = get_random_spooky_word
+    word_index = letter.index(word)
 
 
 
@@ -87,171 +261,37 @@ def play_hangman():
 
     while True:
         spooky_word = get_random_spooky_word()
-        print(f"spooky word is {spooky_word}")
+        clue = initial_clue(spooky_word)
+        print(f"DEBUG: spooky word is {spooky_word}")
 
         wrong_guesses_taken = 0
-        if wrong_guesses_taken == 0:
-                print("""
-________
-| /     |
-|
-|
-|
-|
-|
-|
-|____+
-""")
-        while wrong_guesses_taken <= max_wrong_guesses:
-            guess = ""
+        
+        while wrong_guesses_taken < max_wrong_guesses:
             #print(clues_from_letter(guess, spooky_word))
-            print(string_to_array(spooky_word))
+            print(clue)
 
+            # ensure all letters
             while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(guess):
                 print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
-                guess.lower() = input("enter a letter: ")
 
+            # check if letter is in word
             if guess in spooky_word:
                 pass
 
-            if guess not in spooky_word:
-                wrong_guesses_taken += 1
+            wrong_guesses_taken += 1
 
 
-##########################################
-            if wrong_guesses_taken == 1:
-                print("""
-________
-| /     |
-|     (:D)
-|
-|
-|
-|
-|
-|____+
-""")        
-            if wrong_guesses_taken == 2:
-                print("""
-________
-| /     |
-|     (:D)
-|       |
-|       |
-|       |
-|
-|
-|____+
-""")                           
-            if wrong_guesses_taken == 3:
-                print("""
-________
-| /     |
-|     (:D)
-|     \ | 
-|       |
-|       |
-|
-|
-|____+
+        while wrong_guesses_taken == max_wrong_guesses:
+            word_guess = input("This is your last attempt. Make a *word* guess: ")
 
-""")              
-            if wrong_guesses_taken == 4:
-                print("""
-________
-| /     |
-|      (:/)
-|        | 
-|      / | \
-|        |
-|
-|
-|____+
+            # if the letter the player inputs is not in the word, returns *
+            if word_guess == correct_word:
+                break
+            elif wrong_guesses_taken > max_wrong_guesses:
+                print(f"""you lost...
 
-""")        
-            if wrong_guesses_taken == 5:
-                print("""
-________
-| /     |
-|     (._.)
-|       | 
-|     / | \
-|       |
-|      / 
-|
-|____+
-
-""")        
-            if wrong_guesses_taken == 6:
-                print("""
-________
-| /     |
-|     (-_-)
-|       | 
-|     / | \
-|       |
-|      / \
-|
-|____+
-""")        
-            if wrong_guesses_taken == 7:
-                print("""
-________
-| /     |
-|     (x_x)
-|
-|       | 
-|     / | \
-|       |
-|      / \
-|____+  
-
-""")        
-            if wrong_guesses_taken == 8:
-                print("""
-________
-| /     |
-|     (x_x)
-|
-|
-|
-|
-|              
-|____+{___}
-""")        
-            if wrong_guesses_taken == 9:
-                print("""
-________
-| /     |
-|            
-|
-|     (x_x)
-|
-|
-|              
-|____+{___}
-""")
-#####################################################################
-
-            while wrong_guesses_taken == max_wrong_guesses:
-                word_guess = input("This is your last attempt. Make a *word* guess: ")
-
-                # if the letter the player inputs is not in the word, returns *
-                if word_guess == correct_word:
-                    break
-                elif wrong_guesses_taken > max_wrong_guesses:
-                    print(f"""you lost...
-    ________
-    | /     |
-    |            
-    |
-    |
-    |
-    |
-    |              
-    |____+{(0_0)}
     the answer was {spooky_word}""")
-                    break
+            break
 
 
 
