@@ -271,11 +271,11 @@ def play_hangman():
             print(clue)
 
             # ensure all letters
-            while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(guess):
+            while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(clue):
                 print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
 
             # check if letter is in word
-            if guess in spooky_word:
+            if clue in spooky_word:
                 pass
 
             wrong_guesses_taken += 1
