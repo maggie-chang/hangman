@@ -14,6 +14,7 @@ HEIGHT = 300
 # print(spooky_word)
 # screen.draw.text(spooky_word, (250, 150), color="red")
 
+
 def introduction():
     print("""
           Welcome to Hangman!
@@ -24,30 +25,28 @@ Instructions and Info:
     - For each incorrect letter guessed, a body part will be added
           """)
     return True
-    
 
 
 def get_random_spooky_word():
     """returns a random word from words.txt"""
     with open("words.txt") as file:
-        return random.choice(list(file))[:-1]
-
+        return random.choice(list(file))[:-1].lower()
 
 
 def is_only_letters(word):
     """makes sure players' input is only letters"""
     for letter in word:
-        if (letter not in "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"):
+        if (letter
+            not in "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z"):
             return False
     return True
 
 
-
 def correct_word(spooky_word, guessed_word):
     """returns "you won!" when the player correctly guesses the spooky word"""
-    spooky_word = get_random_spooky_word
     if guessed_word == spooky_word:
-        return print("""
+        return print(
+            """
 ________
 | /     |
 |
@@ -57,12 +56,11 @@ ________
 |        | 
 |        |
 |____+  / \
-you saved the man!""")
-    
+you saved the man!"""
+        )
 
-    
+
 def print_the_man(num_guesses):
-
     if num_guesses == 0:
         print("""
 ________
@@ -75,7 +73,6 @@ ________
 |
 |____+
 """)
-                
     if num_guesses == 1:
         print("""
 ________
@@ -87,8 +84,8 @@ ________
 |
 |
 |____+
-""")        
-    if num_guesses  == 2:
+""")
+    if num_guesses == 2:
         print("""
 ________
 | /     |
@@ -99,7 +96,7 @@ ________
 |
 |
 |____+
-""")                           
+""")
     if num_guesses == 3:
         print("""
 ________
@@ -112,7 +109,7 @@ ________
 |
 |____+
 
-""")              
+""")
     if num_guesses == 4:
         print("""
 ________
@@ -125,7 +122,7 @@ ________
 |
 |____+
 
-""")        
+""")
     if num_guesses == 5:
         print("""
 ________
@@ -138,7 +135,7 @@ ________
 |
 |____+
 
-""")        
+""")
     if num_guesses == 6:
         print("""
 ________
@@ -150,7 +147,7 @@ ________
 |      / \
 |
 |____+
-""")        
+""")
     if num_guesses == 7:
         print("""
 ________
@@ -163,7 +160,7 @@ ________
 |      / \
 |____+  
 
-""")        
+""")
     if num_guesses == 8:
         print("""
 ________
@@ -175,7 +172,7 @@ ________
 |
 |              
 |____+{___}
-""")        
+""")
     if num_guesses == 9:
         print("""
 ________
@@ -203,7 +200,6 @@ ________
 """)
 
 
-
 def clues_from_letter(spooky_word: str, guessed_letter):
     clue = ""
     guess_index = spooky_word.index(guessed_letter)
@@ -217,7 +213,6 @@ def clues_from_letter(spooky_word: str, guessed_letter):
     return clue
 
 
-
 def initial_clue(str):
     """edit this so it takes the guess and returns a new string but with the correctly guessed letter"""
     result = []
@@ -226,22 +221,27 @@ def initial_clue(str):
     return result
 
 
-
 def get_word_from_player():
-    guessed_word = input("enter a word: ")
-    
-    while not is_only_letters(guessed_word):
-        print("please use only letters")
+    wants_word_guess = ""
+    while wants_word_guess != "yes" and wants_word_guess != "no":
+        wants_word_guess = input("would you like to guess the word? (yes/no): ")
+        wants_word_guess = wants_word_guess.lower()
+
+    if wants_word_guess == "yes":
         guessed_word = input("enter a word: ")
 
-    guessed_word = guessed_word.lower()
-    return guessed_word
+        while not is_only_letters(guessed_word):
+            print("please use only letters")
+            guessed_word = input("enter a word: ")
 
+        guessed_word = guessed_word.lower()
+        return guessed_word
+    return ""
 
 
 def get_letter_from_player():
     guessed_letter = input("enter a letter: ")
-    
+
     while (not is_only_letters(guessed_letter)) and len(guessed_letter) == 1:
         print("please enter a single letter")
         guessed_letter = input("enter a letter: ")
@@ -250,58 +250,47 @@ def get_letter_from_player():
     return guessed_letter
 
 
+def index_of_letter_in_word(char, word):
+    index = 0
 
-def index_of_letter_in_word(letter, word):
-    word = get_random_spooky_word
-    word_index = letter.index(word)
+    for letter in word:
+        if letter == char:
+            return index
+        index = index + 1
+
+    return -1
 
 
 
 def play_hangman():
-
     while True:
         spooky_word = get_random_spooky_word()
         clue = initial_clue(spooky_word)
         print(f"DEBUG: spooky word is {spooky_word}")
 
         wrong_guesses_taken = 0
-        
+
         while wrong_guesses_taken < max_wrong_guesses:
-            #print(clues_from_letter(guess, spooky_word))
             print(clue)
+            word_from_player = get_word_from_player()
+            if word_from_player == spooky_word:
+                correct_word(spooky_word)
 
-            # ensure all letters
-            while wrong_guesses_taken != max_wrong_guesses or not is_only_letters(clue):
-                print(f"you have {wrong_guesses_taken} wrong guess(es) taken")
-
-            # check if letter is in word
-            if clue in spooky_word:
-                pass
-
-            wrong_guesses_taken += 1
-
-
-        while wrong_guesses_taken == max_wrong_guesses:
-            word_guess = input("This is your last attempt. Make a *word* guess: ")
-
-            # if the letter the player inputs is not in the word, returns *
-            if word_guess == correct_word:
-                break
-            elif wrong_guesses_taken > max_wrong_guesses:
-                print(f"""you lost...
-
-    the answer was {spooky_word}""")
             break
+        break
+            
+
 
 
 
 #############################################################################################
 # MAIN PROGRAM
 #############################################################################################
-introduction()
+# introduction()
 play_hangman()
-#spooky_word = get_random_spooky_word()
-#print(string_to_array(spooky_word))
+#print(index_of_letter_in_word("m", "sleepy"))
+# spooky_word = get_random_spooky_word()
+# print(string_to_array(spooky_word))
 # pgzrun.go()
 
 
