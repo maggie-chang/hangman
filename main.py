@@ -35,11 +35,9 @@ def is_only_letters(word):
     return True
 
 
-def correct_word(spooky_word, guessed_word):
-    """returns "you won!" when the player correctly guesses the spooky word"""
-    if guessed_word == spooky_word:
-        return print(
-            """
+def you_win():
+    return print(
+        """
 ________
 | /     |
 |
@@ -48,9 +46,9 @@ ________
 |      \ | /
 |        | 
 |        |
-|____+  / \
+|____+  / \ 
 you saved the man!"""
-        )
+    )
 
 
 def print_the_man(num_guesses):
@@ -215,26 +213,6 @@ ________
         )
 
 
-def clues_from_letter(spooky_word: str, guessed_letter):
-    clue = []
-    guess_index = spooky_word.index(guessed_letter)
-
-    for i in range(len(spooky_word)):
-        if i == guess_index:
-            clue += guessed_letter
-        else:
-            clue += "*"
-
-    return clue
-
-
-def initial_clue(str):
-    result = []
-    for _ in str:
-        result.append("*")
-    return result
-
-
 def get_word_from_player():
     spooky_word = get_random_spooky_word()
     wants_word_guess = ""
@@ -266,15 +244,30 @@ def get_letter_from_player():
     return guessed_letter
 
 
+def initial_clue(str):
+    result = []
+    for _ in str:
+        result.append("*")
+    return result
+
+
 def index_of_letter_in_word(char, spooky_word):
     index = 0
-
     for letter in spooky_word:
         if letter == char:
             return index
         index = index + 1
 
     return -1
+
+
+def update_clue(word, letter, clue):
+    letter_index = index_of_letter_in_word(letter, word)
+    if letter_index != -1:
+        clue[letter_index] = letter
+        return True
+    else:
+        return False
 
 
 def play_hangman():
@@ -288,47 +281,28 @@ def play_hangman():
         wrong_guesses_taken = 0
 
         while wrong_guesses_taken < max_wrong_guesses:
-            print_the_man(num_guesses=0)
+            print(f"you have #{wrong_guesses_taken} wrong guess(es) taken")
+            print_the_man(num_guesses=wrong_guesses_taken)
             print(clue)
             word_from_player = get_word_from_player()
-            if word_from_player == spooky_word:
-                print(
-                    """
-________
-| /     |
-|
-|   
-|      (:D)
-|      \ | /
-|        | 
-|        |
-|____+  / \  
 
-you saved the man!""")
-                
-                break
+            if word_from_player == spooky_word:
+                you_win()
+            else:
+                if word_from_player != spooky_word:
+                    wrong_guesses_taken = wrong_guesses_taken + 1
+                    print_the_man(num_guesses=wrong_guesses_taken)
+                letter_from_player = get_letter_from_player()
+                if not update_clue(spooky_word, letter_from_player, clue):
+                    wrong_guesses_taken = wrong_guesses_taken + 1
+
         break
 
 
 #############################################################################################
 # MAIN PROGRAM
 #############################################################################################
-spooky_word = get_random_spooky_word()
-print(spooky_word)
-letter = input("letter: ")
-# print(index_of_letter_in_word(letter, spooky_word))
-# print(initial_clue(str=spooky_word))
-print(clues_from_letter(spooky_word, guessed_letter=letter))
 
-#introduction()
-#play_hangman()
-# print(string_to_array(spooky_word))
+# introduction()
+play_hangman()
 # pgzrun.go()
-
-
-# *important* missing:
-# 2) using player's input then returning whether if the guess is correct or incorrect
-#   - if correct, returns the player's letter input and gives the player the right position.
-#   - if wrong, wrong_guesses_taken += 1, and returns the same string of *s (and letters) as before & look at #4
-#   - e.g. when wrong_guesses taken = 0, it will print the first image of the hangman, which is just the hanger because no wrong guesses has been taken
-# 4) play again option + give up option
