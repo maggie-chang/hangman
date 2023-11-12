@@ -53,22 +53,19 @@ you saved the man!"""
 
 def print_the_man(num_guesses):
     if num_guesses == 0:
-        print(
-            """
+        print("""
 ________
 | /     |
 |
+| 
 |
+| 
+| 
 |
-|
-|
-|
-|____+
-"""
-        )
+|____+ """)
+        
     if num_guesses == 1:
-        print(
-            """
+        print("""
 ________
 | /     |
 |     (:D)
@@ -77,12 +74,10 @@ ________
 |
 |
 |
-|____+
-"""
-        )
+|____+ """)
+        
     if num_guesses == 2:
-        print(
-            """
+        print("""
 ________
 | /     |
 |     (:D)
@@ -91,12 +86,10 @@ ________
 |       |
 |
 |
-|____+
-"""
-        )
+|____+ """)
+        
     if num_guesses == 3:
-        print(
-            """
+        print("""
 ________
 | /     |
 |     (:D)
@@ -105,10 +98,8 @@ ________
 |       |
 |
 |
-|____+
-
-"""
-        )
+|____+ """)
+        
     if num_guesses == 4:
         print(
             """
@@ -116,29 +107,24 @@ ________
 | /     |
 |      (:/)
 |        | 
-|      / | \
+|      / | \ 
 |        |
 |
 |
-|____+
-
-"""
-        )
+|____+ """)
+        
     if num_guesses == 5:
-        print(
-            """
+        print("""
 ________
 | /     |
 |     (._.)
 |       | 
-|     / | \
+|     / | \ 
 |       |
-|      / 
+|      /  
 |
-|____+
-
-"""
-        )
+|____+ """)
+        
     if num_guesses == 6:
         print(
             """
@@ -146,13 +132,12 @@ ________
 | /     |
 |     (-_-)
 |       | 
-|     / | \
+|     / | \ 
 |       |
-|      / \
+|      / \ 
 |
-|____+
-"""
-        )
+|____+ """)
+        
     if num_guesses == 7:
         print(
             """
@@ -161,16 +146,13 @@ ________
 |     (x_x)
 |
 |       | 
-|     / | \
+|     / | \ 
 |       |
-|      / \
-|____+  
-
-"""
-        )
+|      / \ 
+|____+  """)
+        
     if num_guesses == 8:
-        print(
-            """
+        print("""
 ________
 | /     |
 |     (x_x)
@@ -179,12 +161,10 @@ ________
 |
 |
 |              
-|____+{___}
-"""
-        )
+|____+{___} """)
+        
     if num_guesses == 9:
-        print(
-            """
+        print("""
 ________
 | /     |
 |            
@@ -193,13 +173,10 @@ ________
 |
 |
 |              
-|____+{___}
-"""
-        )
+|____+{___} """)
 
     if num_guesses == 10:
-        print(
-            """
+        print("""
 ________
 | /     |
 |            
@@ -208,9 +185,7 @@ ________
 |
 |
 |              
-|____+{(0_0)}
-"""
-        )
+|____+{(0_0)}""")
 
 
 def get_word_from_player():
@@ -284,14 +259,14 @@ def play_hangman():
             print(f"you have #{wrong_guesses_taken} wrong guess(es) taken")
             print_the_man(num_guesses=wrong_guesses_taken)
             print(clue)
+
             word_from_player = get_word_from_player()
 
             if word_from_player == spooky_word:
                 you_win()
+                break
             else:
-                if word_from_player != spooky_word:
-                    wrong_guesses_taken = wrong_guesses_taken + 1
-                    print_the_man(num_guesses=wrong_guesses_taken)
+
                 letter_from_player = get_letter_from_player()
                 if not update_clue(spooky_word, letter_from_player, clue):
                     wrong_guesses_taken = wrong_guesses_taken + 1
