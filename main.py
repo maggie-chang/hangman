@@ -10,11 +10,11 @@ def introduction():
           Welcome to Hangman!
 
 Instructions and Info:
-    -  All words are anything related to the fall season
-    - There will be asterisks '*' indicating the # of letters in the word
-    - For each incorrect letter guessed, a body part will be added
-          """
-    )
+    - There will be asterisks '*' indicating the # of letters in the word and the corresponding position.
+    - For each correct letter guessed, the letter will replace the asterisk, 
+      and for  each incorrect letter guessed, a body part will be added.
+    - The theme of the words will be anything related to the Fall and Spooky season.
+          """)
     return True
 
 
@@ -283,6 +283,9 @@ def play_hangman():
                 letter_from_player = get_letter_from_player()
                 if not update_clue(spooky_word, letter_from_player, clue):
                     wrong_guesses_taken = wrong_guesses_taken + 1
+                if word_from_player != spooky_word:
+                    wrong_guesses_taken = wrong_guesses_taken + 1
+                    print_the_man(num_guesses=wrong_guesses_taken)
 
             if wrong_guesses_taken > max_wrong_guesses:
                 you_lost(spooky_word)

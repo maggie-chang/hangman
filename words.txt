@@ -1,8 +1,5 @@
-Autumn
-Acorn
-Arachnophobia
 Alien
-Ancestors
+Ancestor
 Angel
 Ash
 Bones
@@ -98,7 +95,6 @@ Prank
 Panic
 Pale
 Party
-Pentagram
 Peculiar
 Plague
 Quiver
@@ -112,8 +108,6 @@ Rot
 Spider
 Scare
 Scary
-September
-Skeleton
 Slime
 Shadow
 Trick
