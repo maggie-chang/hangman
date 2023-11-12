@@ -51,6 +51,20 @@ you saved the man!"""
     )
 
 
+def you_lost(spooky_word):
+    print(f"""you lost...
+    ________
+    | /     |
+    |            
+    |
+    |
+    |
+    |
+    |              
+    |____+{(0_0)}
+    the answer was {spooky_word}""")
+
+
 def print_the_man(num_guesses):
     if num_guesses == 0:
         print("""
@@ -266,12 +280,14 @@ def play_hangman():
                 you_win()
                 break
             else:
-
                 letter_from_player = get_letter_from_player()
                 if not update_clue(spooky_word, letter_from_player, clue):
                     wrong_guesses_taken = wrong_guesses_taken + 1
 
+            if wrong_guesses_taken > max_wrong_guesses:
+                you_lost(spooky_word)
         break
+
 
 
 #############################################################################################
