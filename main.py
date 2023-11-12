@@ -10,9 +10,10 @@ def introduction():
           Welcome to Hangman!
 
 Instructions and Info:
-    - There will be asterisks '*' indicating the # of letters in the word and the corresponding position.
+    - There will be asterisks '*' indicating the # of letters in the word 
+        and the corresponding position.
     - For each correct letter guessed, the letter will replace the asterisk, 
-      and for  each incorrect letter guessed, a body part will be added.
+        and for  each incorrect letter guessed, a body part will be added.
     - The theme of the words will be anything related to the Fall and Spooky season.
           """)
     return True
@@ -53,16 +54,16 @@ you saved the man!"""
 
 def you_lost(spooky_word):
     print(f"""you lost...
-    ________
-    | /     |
-    |            
-    |
-    |
-    |
-    |
-    |              
-    |____+{(0_0)}
-    the answer was {spooky_word}""")
+________
+| /     |
+|            
+|
+|
+|
+|
+|            
+|____+{(0_0)}
+the answer was {spooky_word} """)
 
 
 def print_the_man(num_guesses):
@@ -260,11 +261,13 @@ def update_clue(word, letter, clue):
 
 
 def play_hangman():
-    introduction()
 
     while True:
+
         spooky_word = get_random_spooky_word()
         clue = initial_clue(spooky_word)
+        print("""
+**************************""")
         print(f"DEBUG: spooky word is {spooky_word}")
 
         wrong_guesses_taken = 0
@@ -279,17 +282,23 @@ def play_hangman():
             if word_from_player == spooky_word:
                 you_win()
                 break
-            else:
+            else: *******************NEEDS WORK********
+                wrong_guesses_taken = wrong_guesses_taken + 1
+                print(f""""
+you have #{wrong_guesses_taken} wrong guess(es) taken""")
+                print_the_man(num_guesses=wrong_guesses_taken)
+            
+            if word_from_player != spooky_word:
                 letter_from_player = get_letter_from_player()
                 if not update_clue(spooky_word, letter_from_player, clue):
                     wrong_guesses_taken = wrong_guesses_taken + 1
-                if word_from_player != spooky_word:
-                    wrong_guesses_taken = wrong_guesses_taken + 1
-                    print_the_man(num_guesses=wrong_guesses_taken)
 
             if wrong_guesses_taken > max_wrong_guesses:
                 you_lost(spooky_word)
+                break
         break
+
+
 
 
 
@@ -297,6 +306,12 @@ def play_hangman():
 # MAIN PROGRAM
 #############################################################################################
 
-# introduction()
+introduction()
 play_hangman()
+print("Do you want to play again? (yes/no)")
+if not input().lower().startswith("y"):
+    print("play again sometime soon!")
+else:
+    play_hangman()
+
 # pgzrun.go()

@@ -42,7 +42,6 @@ Goblin
 Ghoul
 Grave
 Gory
-Gargoyle
 Gothic
 Ghastly
 Gremlins
