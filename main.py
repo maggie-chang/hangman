@@ -21,7 +21,7 @@ Instructions and Info:
 
 def get_random_spooky_word():
     """returns a random word from words.txt"""
-    with open("natalie's_word.txt") as file:
+    with open("words.txt") as file:
         return random.choice(list(file))[:-1].lower()
 
 
