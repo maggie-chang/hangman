@@ -9,7 +9,7 @@ Instructions and Info:
     - There will be asterisks '*' indicating the # of letters in the word 
         and the corresponding position.
     - For each correct letter guessed, the letter will replace the asterisk, 
-        and for  each incorrect letter guessed, a body part will be added.
+        and for each incorrect letter guessed, a body part will be added.
     - The theme of the words will be anything related to the Fall and Spooky season.
           """)
     return True
@@ -47,7 +47,7 @@ you saved the man!"""
 
 
 def you_lost(spooky_word):
-    print(f"""you lost...
+    print("""you lost...
 ________
 | /     |
 |            
@@ -56,8 +56,8 @@ ________
 |
 |
 |            
-|____+{(0_0)}
-the answer was {spooky_word} """)
+|____+{(x_x)}""")
+    print(f"the answer was {spooky_word}")
 
 
 def print_the_man(num_guesses):
@@ -305,7 +305,8 @@ you have #{wrong_guesses_taken} wrong guess(es) taken""")
 introduction()
 while True:
     play_hangman()
-    print("Do you want to play again? (yes/no)")
+    print("----------")
+    print("do you want to play again? (yes/no)")
     if not input().lower().startswith("y"):
         print("play again sometime soon!")
         break
