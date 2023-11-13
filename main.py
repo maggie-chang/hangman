@@ -21,7 +21,7 @@ Instructions and Info:
 
 def get_random_spooky_word():
     """returns a random word from words.txt"""
-    with open("words.txt") as file:
+    with open("natalie's_word.txt") as file:
         return random.choice(list(file))[:-1].lower()
 
 
@@ -200,7 +200,7 @@ ________
 |
 |
 |              
-|____+{(0_0)}""")
+|____+{(0_0)} """)
 
 
 def get_word_from_player():
@@ -268,12 +268,12 @@ def play_hangman():
         clue = initial_clue(spooky_word)
         print("""
 **************************""")
-        print(f"DEBUG: spooky word is {spooky_word}")
+        #print(f"DEBUG: spooky word is {spooky_word}")
 
         wrong_guesses_taken = 0
 
         while wrong_guesses_taken < max_wrong_guesses:
-            print(f"you have #{wrong_guesses_taken} wrong guess(es) taken")
+            print(f"you have #{wrong_guesses_taken} wrong guess(es) out of 10 taken")
             print_the_man(num_guesses=wrong_guesses_taken)
             print(clue)
 
@@ -309,11 +309,13 @@ you have #{wrong_guesses_taken} wrong guess(es) taken""")
 #############################################################################################
 
 introduction()
-play_hangman()
-print("Do you want to play again? (yes/no)")
-if not input().lower().startswith("y"):
-    print("play again sometime soon!")
-else:
+while True:
     play_hangman()
+    print("Do you want to play again? (yes/no)")
+    if not input().lower().startswith("y"):
+        print("play again sometime soon!")
+        break
+    else:
+        play_hangman()
 
 # pgzrun.go()

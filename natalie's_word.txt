@@ -1,0 +1,9 @@
+pen
+win
+bye
+low
+play
+round
+water
+hot
+cold
