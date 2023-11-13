@@ -200,7 +200,8 @@ ________
 |
 |
 |              
-|____+{(0_0)} """)
+|____+{}
+""")
 
 
 def get_word_from_player():
@@ -295,7 +296,7 @@ you have #{wrong_guesses_taken} wrong guess(es) taken""")
                 if not update_clue(spooky_word, letter_from_player, clue):
                     wrong_guesses_taken = wrong_guesses_taken + 1
 
-            if wrong_guesses_taken > max_wrong_guesses:
+            if wrong_guesses_taken == max_wrong_guesses:
                 you_lost(spooky_word)
                 break
         break
