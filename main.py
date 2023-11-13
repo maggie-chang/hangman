@@ -1,12 +1,8 @@
-# import pgzrun
 import random
-
-max_wrong_guesses = 10
 
 
 def introduction():
-    print(
-        """
+    print("""
           Welcome to Hangman!
 
 Instructions and Info:
@@ -20,13 +16,11 @@ Instructions and Info:
 
 
 def get_random_spooky_word():
-    """returns a random word from words.txt"""
     with open("words.txt") as file:
         return random.choice(list(file))[:-1].lower()
 
 
 def is_only_letters(word):
-    """makes sure players' input is only letters"""
     for letter in word:
         if (
             letter
@@ -200,8 +194,7 @@ ________
 |
 |
 |              
-|____+{}
-""")
+|____+ {x_x} """)
 
 
 def get_word_from_player():
@@ -235,9 +228,9 @@ def get_letter_from_player():
     return guessed_letter
 
 
-def initial_clue(str):
+def initial_clue(word):
     result = []
-    for _ in str:
+    for _ in word:
         result.append("*")
     return result
 
@@ -267,14 +260,14 @@ def play_hangman():
 
         spooky_word = get_random_spooky_word()
         clue = initial_clue(spooky_word)
-        print("""
-**************************""")
         #print(f"DEBUG: spooky word is {spooky_word}")
 
+        max_wrong_guesses = 10
         wrong_guesses_taken = 0
 
         while wrong_guesses_taken < max_wrong_guesses:
-            print(f"you have #{wrong_guesses_taken} wrong guess(es) out of 10 taken")
+            print(f"""------------------------
+you have {wrong_guesses_taken} wrong guess(es) out of 10 taken""")
             print_the_man(num_guesses=wrong_guesses_taken)
             print(clue)
 
@@ -316,7 +309,3 @@ while True:
     if not input().lower().startswith("y"):
         print("play again sometime soon!")
         break
-    else:
-        play_hangman()
-
-# pgzrun.go()
