@@ -220,7 +220,7 @@ def get_word_from_player():
 
         guessed_word = guessed_word.lower()
         return guessed_word
-    return ""
+    return None
 
 
 def get_letter_from_player():
@@ -279,14 +279,16 @@ def play_hangman():
 
             word_from_player = get_word_from_player()
 
-            if word_from_player == spooky_word:
-                you_win()
-                break
-            else: *******************NEEDS WORK********
-                wrong_guesses_taken = wrong_guesses_taken + 1
-                print(f""""
+            if word_from_player is not None:
+                if word_from_player == spooky_word:
+                    you_win()
+                    break
+                else:
+                    wrong_guesses_taken = wrong_guesses_taken + 1
+                    print(f"""
 you have #{wrong_guesses_taken} wrong guess(es) taken""")
-                print_the_man(num_guesses=wrong_guesses_taken)
+                    print_the_man(num_guesses=wrong_guesses_taken)
+
             
             if word_from_player != spooky_word:
                 letter_from_player = get_letter_from_player()
